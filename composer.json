@@ -1,0 +1,13 @@
+{
+    "name": "denheck/phrame",
+    "description": "Scaffold generator for PHP",
+    "authors": [
+        {
+            "name": "Dennis Heckman",
+            "email": "denheck@gmail.com"
+        }
+    ],
+    "require": {
+
+    }
+}
