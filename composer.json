@@ -8,6 +8,6 @@
         }
     ],
     "require": {
-
+        "symfony/console": "2.5.*"
     }
 }
