@@ -9,5 +9,11 @@
     ],
     "require": {
         "symfony/console": "2.5.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Phrame\\": "src/"
+        }
     }
+
 }
