@@ -25,7 +25,7 @@ class ModelGenerator extends \Phrame\Generator
         // log generator info to command line
         $this->log("Generating your stuff...");
 
-        // make directories at root of application
+        // make directories at path to destination, usually the current working directory
         $this->mkdir('app/controllers/');
 
         // copy files from generator root filepath to application root filepath
