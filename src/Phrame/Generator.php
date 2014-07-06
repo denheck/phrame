@@ -2,7 +2,7 @@
 
 namespace Phrame;
 
-class Generator
+abstract class Generator
 {
     private $config;
 
@@ -13,6 +13,7 @@ class Generator
     {
         $source = $this->getSource();
         // TODO: handle erroneous JSON
+        // TODO: handle source and dest paths, i.e. trailing slashe vs no trailing slash
         $this->config = json_decode($configFile);
     }
 
@@ -25,7 +26,7 @@ class Generator
     public function mkdir($directory, $mode = 0777, $recursive = true)
     {
         $destination = $this->getDestination();
-        return mkdir($destination . PATH_SEPARATOR . trim($directory, " \t\n\r\0\x0B/"));
+        return mkdir($destination . DIRECTORY_SEPARATOR . trim($directory, " \t\n\r\0\x0B/"));
     }
 
     /**
@@ -39,8 +40,8 @@ class Generator
         $source = $this->getSource();
 
         return copy(
-            $source . PATH_SEPARATOR . $fromFile,
-            $destination . PATH_SEPARATOR . $toFile
+            $source . DIRECTORY_SEPARATOR . $fromFile,
+            $destination . DIRECTORY_SEPARATOR . $toFile
         );
     }
 }

@@ -1,5 +1,8 @@
 <?php
 
+// TODO: should show source and destination directories with more verbose logging aka
+// SOURCE: /foo/bar/
+// DEST: /new/location/
 // TODO: resolve where the generated files should go
 class ModelGenerator extends \Phrame\Generator
 {
