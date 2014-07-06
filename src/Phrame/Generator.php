@@ -27,4 +27,20 @@ class Generator
         $destination = $this->getDestination();
         return mkdir($destination . PATH_SEPARATOR . trim($directory, " \t\n\r\0\x0B/"));
     }
+
+    /**
+     * @param string $fromFile path to file relative to generator's source
+     * @param string $toFile path to destination relative to generator's destination
+     * @return bool
+     */
+    public function copy($fromFile, $toFile)
+    {
+        $destination = $this->getDestination();
+        $source = $this->getSource();
+
+        return copy(
+            $source . PATH_SEPARATOR . $fromFile,
+            $destination . PATH_SEPARATOR . $toFile
+        );
+    }
 }
