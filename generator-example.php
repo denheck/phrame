@@ -28,6 +28,7 @@ class ModelGenerator extends \Phrame\Generator
         // make directories at path to destination, usually the current working directory
         $this->mkdir('app/controllers/');
 
+        // TODO: should this method prompt if file will be overwritten?
         // copy files from generator root filepath to application root filepath
         $this->copy('templates/config.yml', 'files/config.yml');
 
