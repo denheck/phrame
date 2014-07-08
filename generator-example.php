@@ -60,6 +60,7 @@ class ModelGenerator extends \Phrame\Generator
 /**
  * Features:
  * 1. phrame generate = render templates, copy files, make directories, etc
+ * 2. phrame generate-interface interface dest = render file which implements an interface
  */
 
 /**
@@ -67,4 +68,8 @@ class ModelGenerator extends \Phrame\Generator
  * 1. Switch to PSR-4 autoloading
  * 2. Implement a generator generator (Yo Dawg...)
  * 3. Implement a generator test generator
+ * 4. Integration Tests
+ *
+ * NICETOHAVES
+ * 1. Test logging
  */
