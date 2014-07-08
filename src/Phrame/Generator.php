@@ -4,7 +4,23 @@ namespace Phrame;
 
 abstract class Generator
 {
+    /**
+     * @var StdClass $config
+     */
     private $config;
+
+    /**
+     * @var \Monolog\Logger $logger
+     */
+    private $logger;
+
+    /**
+     * @param \Monolog\Logger $logger
+     */
+    public function __construct(\Monolog\Logger $logger)
+    {
+        $this->logger = $logger;
+    }
 
     /**
      * @param string $configFile JSON configuration file's name
@@ -26,7 +42,11 @@ abstract class Generator
     public function mkdir($directory, $mode = 0777, $recursive = true)
     {
         $destination = $this->getDestination();
-        return mkdir($destination . DIRECTORY_SEPARATOR . trim($directory, " \t\n\r\0\x0B/"));
+        $destination .= DIRECTORY_SEPARATOR . trim($directory, " \t\n\r\0\x0B/");
+
+        $this->logger->addDebug("Creating directory '$destination'...");
+
+        return mkdir($destination);
     }
 
     /**
@@ -39,9 +59,14 @@ abstract class Generator
         $destination = $this->getDestination();
         $source = $this->getSource();
 
+        $sourceFile = $source . DIRECTORY_SEPARATOR . $fromFile;
+        $destinationFile = $destination . DIRECTORY_SEPARATOR . $toFile;
+
+        $this->logger->addDebug("Copying '$sourceFile' to '$destinationFile'...");
+
         return copy(
-            $source . DIRECTORY_SEPARATOR . $fromFile,
-            $destination . DIRECTORY_SEPARATOR . $toFile
+            $sourceFile,
+            $destinationFile
         );
     }
 }

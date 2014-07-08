@@ -12,6 +12,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
     public function testCopy()
     {
         $generator = $this->getMockBuilder('Phrame\Generator')
+                          ->setConstructorArgs(array($this->getTestLogger()))
                           ->setMethods(array('getDestination', 'getSource'))
                           ->getMockForAbstractClass();
 
@@ -31,5 +32,13 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         unlink($this->tmpDir . DIRECTORY_SEPARATOR . 'test.js');
+    }
+
+    private function getTestLogger()
+    {
+        $logger = new Monolog\Logger('test');
+        $logger->pushHandler(new Monolog\Handler\TestHandler());
+
+        return $logger;
     }
 }
