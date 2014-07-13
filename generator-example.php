@@ -7,24 +7,12 @@
 class ModelGenerator extends \Phrame\Generator
 {
     /**
-     * if this method is present, it will ask users for information which will
-     * be stored in appropriate properties on the ModelGenerator Object
-     */
-    public function ask()
-    {
-        // used to ask the user a question on the command line
-        // parameter 1: what the user will see on the command line
-        // parameter 2: key to access config option via "$this->config('username')"
-        // parameter 3 (optional): default if user doesn't answer
-        $this->prompt("What is your name?", "username", "beelzebub");
-        $this->prompt("Where are you from?", "place");
-    }
-
-    /**
-     *  This method will run the generator
+     *  This is the only method which will be called directly on this class
      */
     public function generate()
     {
+        $this->ask();
+
         // log generator info to command line
         $this->log("Generating your stuff...");
 
@@ -35,8 +23,8 @@ class ModelGenerator extends \Phrame\Generator
         // copy files from generator root filepath to application root filepath
         $this->copy('templates/config.yml', 'files/config.yml');
 
-        // run another generator
-        $this->runGenerator('OtherGenerator');
+        // run another generator (future addition)
+        //$this->runGenerator('OtherGenerator');
 
         // returns path to destination, usually the current working directory
         $destPath = $this->getDestination();
@@ -53,6 +41,19 @@ class ModelGenerator extends \Phrame\Generator
 
         // access configuration options via
         $face = $this->config('your-face');
+    }
+
+    /**
+     * This is separated from the generate method for brevity only
+     */
+    private function ask()
+    {
+        // used to ask the user a question on the command line
+        // parameter 1: what the user will see on the command line
+        // parameter 2: key to access config option via "$this->config('username')"
+        // parameter 3 (optional): default if user doesn't answer
+        $this->prompt("What is your name?", "username", "beelzebub");
+        $this->prompt("Where are you from?", "place");
     }
 }
 
