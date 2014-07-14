@@ -69,4 +69,12 @@ abstract class Generator
             $destinationFile
         );
     }
+
+    public function generate()
+    {
+        // TODO: default should parse config file and take appropriate action
+        //       based on parameters passed. This allows the user to write
+        //       generators in JSON only if needed. JSON is parsed sequentially
+        //       and each key will call a public method on generate.
+    }
 }
