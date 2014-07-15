@@ -1,14 +1,12 @@
 <?php
 
- require_once '../../vendor/autoload.php';
-
 class Generator extends \Phrame\Generator
 {
     public function generate()
     {
         $this->ask();
 
-        $generatorName = $this->config('generator-name');
+        $generatorName = $this->config['generator-name'];
         $this->log("Generating your '$generatorName' generator...");
 
         $generatorDirectory = "{$generatorName}Generator";

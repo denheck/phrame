@@ -5,14 +5,18 @@ namespace Phrame;
 abstract class Generator
 {
     /**
-     * @var StdClass $config
+     * @var array $config
      */
-    private $config;
+    protected $config = array();
 
     /**
      * @var \Monolog\Logger $logger
      */
     private $logger;
+
+    private $questions;
+
+    private $destination;
 
     /**
      * @param \Monolog\Logger $logger
@@ -70,11 +74,51 @@ abstract class Generator
         );
     }
 
+    /**
+     * generator lives in this directory
+     * @return string
+     */
+    public function getSource()
+    {
+
+    }
+
+    public function setSource($source)
+    {
+        $this->source = $source;
+    }
+
+    public function setDestination($destination)
+    {
+        $this->destination = $destination;
+    }
+
+    public function getDestination()
+    {
+        return $this->destination;
+    }
+
     public function generate()
     {
         // TODO: default should parse config file and take appropriate action
         //       based on parameters passed. This allows the user to write
         //       generators in JSON only if needed. JSON is parsed sequentially
         //       and each key will call a public method on generate.
+    }
+
+    public function setPrompt(\Phrame\PromptInterface $prompt)
+    {
+        $this->prompt = $prompt;
+    }
+
+    public function prompt($question, $key)
+    {
+        $answer = $this->prompt->question($question, $key);
+        $this->config[$key] = $answer;
+    }
+
+    public function log($message, $level = 'info')
+    {
+        $this->logger->log($level, $message);
     }
 }
