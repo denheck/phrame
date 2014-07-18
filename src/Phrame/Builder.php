@@ -2,7 +2,7 @@
 
 namespace Phrame;
 
-abstract class Generator
+abstract class Builder
 {
     /**
      * @var array $config

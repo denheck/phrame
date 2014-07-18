@@ -1,6 +1,6 @@
 <?php
 
-class Generator extends \Phrame\Generator
+class Gen extends \Phrame\Builder
 {
     public function generate()
     {
