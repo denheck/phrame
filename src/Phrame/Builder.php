@@ -24,6 +24,7 @@ abstract class Builder
     public function __construct(\Monolog\Logger $logger)
     {
         $this->logger = $logger;
+        $this->handleErrors();
     }
 
     /**
@@ -120,5 +121,21 @@ abstract class Builder
     public function log($message, $level = 'info')
     {
         $this->logger->log($level, $message);
+    }
+
+    /**
+     * throw exceptions in favor of php warnings if a generator fails to copy
+     * or move a file
+     */
+    private function handleErrors()
+    {
+        set_error_handler(function ($errno, $errstr, $errfile, $errline, array $errcontext) {
+            // error was suppressed with the @-operator
+            if (0 === error_reporting()) {
+                return false;
+            }
+
+            throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);
+        });
     }
 }
