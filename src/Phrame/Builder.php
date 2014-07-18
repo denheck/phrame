@@ -51,7 +51,8 @@ abstract class Builder
 
         $this->logger->addDebug("Creating directory '$destination'...");
 
-        return mkdir($destination);
+        // TODO: maybe restrict permissions more
+        return mkdir($destination, 0777, true);
     }
 
     /**
