@@ -62,6 +62,8 @@ class ModelGenerator extends \Phrame\Generator
  * Features:
  * 1. phrame generate = render templates, copy files, make directories, etc
  * 2. phrame generate-interface interface dest = render file which implements an interface
+ * 3. generators clean up after themselves if they fail by deleting all generated
+ *    files and folders
  */
 
 /**
