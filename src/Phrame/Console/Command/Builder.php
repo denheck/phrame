@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Build extends Command
+class Builder extends Command
 {
     public function __construct($name, \Monolog\Logger $logger)
     {
@@ -61,6 +61,6 @@ class Build extends Command
         $builder->setDestination(getcwd());
         $builder->setSource($source);
 
-        $builder->build();
+        $builder->assemble();
     }
 }
