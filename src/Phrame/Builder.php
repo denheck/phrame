@@ -90,7 +90,7 @@ abstract class Builder
      */
     public function getSource()
     {
-
+        return $this->source;
     }
 
     public function setSource($source)

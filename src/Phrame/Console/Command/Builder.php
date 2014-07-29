@@ -29,28 +29,19 @@ class Builder extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $builderPath = $input->getArgument('builder');
+        $builderPath = realpath($input->getArgument('builder'));
         // TODO: make builder text a different color
 
         preg_match('/.*\/(.*).php$/', $builderPath, $matches);
         $builderName = $matches[1];
 
-        $cwd = getcwd();
-
         // TODO: test executing builders from multiple different locations
-
-        if (file_exists($builderPath)) {
-            $source = $builderPath;
-        }
-
-        if (file_exists($cwd . DIRECTORY_SEPARATOR . $builderPath)) {
-            $source = $cwd . DIRECTORY_SEPARATOR . $builderPath;
-        }
-
         $output->writeln("Running builder $builderName... ");
 
         require_once($builderPath);
 
+        $source = substr($builderPath, 0, strrpos($builderPath, '/'));
+        
         $builder = new $builderName($this->logger);
 
         // get answers
