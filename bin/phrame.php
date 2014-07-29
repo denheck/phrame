@@ -3,12 +3,12 @@
 
 require 'vendor/autoload.php';
 
-use Phrame\Console\Command\Generate;
+use Phrame\Console\Command\Build;
 use Symfony\Component\Console\Application;
 use Monolog\Logger;
 
-$log = new Logger('generator');
+$log = new Logger('builder');
 
 $application = new Application();
-$application->add(new Generate(null, $log));
+$application->add(new Build(null, $log));
 $application->run();

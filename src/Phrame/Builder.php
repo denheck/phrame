@@ -108,7 +108,7 @@ abstract class Builder
         return $this->destination;
     }
 
-    public function generate()
+    public function assemble()
     {
         // TODO: default should parse config file and take appropriate action
         //       based on parameters passed. This allows the user to write
